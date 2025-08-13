@@ -1,4 +1,4 @@
-# to-do List
+# to-do list
 
 Este é um aplicativo simples de To-Do List desenvolvido com **PHP + Laravel + Bootstrap**. Permite criar, editar, listar e excluir tarefas. Feito com a intenção de concorrer a uma vaga de Trainee.
 
@@ -41,14 +41,14 @@ cp .env.example .env
 ```
 
 5. Configure as credenciais do banco no arquivo .env (exemplo):
-
+```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=todolist_db
 DB_USERNAME=root
 DB_PASSWORD=
-
+```
 6. Crie o banco de dados no seu phpMyAdmin (por exemplo, todolist_db).
 
 7. Gere a chave da aplicação Laravel:
