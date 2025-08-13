@@ -11,6 +11,7 @@ Este é um aplicativo simples de To-Do List desenvolvido com **PHP + Laravel + B
 - Servidor local com PHP instalado (ex: XAMPP, MAMP ou Laragon)
 - Banco de dados MySQL ou MariaDB
 - Composer instalado ([https://getcomposer.org/](https://getcomposer.org/))
+- Git instalado
 
 ---
 
