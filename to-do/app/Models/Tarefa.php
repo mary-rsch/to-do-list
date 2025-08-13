@@ -15,4 +15,9 @@ class Tarefa extends Model
         'data_vencimento',
         'status',
     ];
+
+    protected $casts = [
+        'data_vencimento' => 'datetime',
+    ];
+
 }

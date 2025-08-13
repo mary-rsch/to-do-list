@@ -30,6 +30,7 @@
 
 
             <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{{ route('tarefas.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 
