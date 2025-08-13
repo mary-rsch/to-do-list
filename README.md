@@ -1,4 +1,4 @@
-# to-Do List
+# to-do List
 
 Este é um aplicativo simples de To-Do List desenvolvido com **PHP + Laravel + Bootstrap**. Permite criar, editar, listar e excluir tarefas. Feito com a intenção de concorrer a uma vaga de Trainee.
 
