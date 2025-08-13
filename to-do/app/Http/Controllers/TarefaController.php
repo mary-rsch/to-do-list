@@ -8,26 +8,33 @@ use Illuminate\Http\Request;
 
 class TarefaController extends Controller
 {
-    public function index(Request $request)
-    {
+public function index(Request $request)
+{
+    $busca = $request->input('busca');
+    $ordenarPor = $request->input('ordenar_por', 'data_vencimento'); // valor padrao
 
-        $busca = $request->input('busca');
-        $status = $request->input('status');
+    $query = Tarefa::query();
 
-        $query = Tarefa::query(); //consulta
-
-        if ($busca) {
-            $query->where('titulo', 'like', '%' . $busca . '%');
-        }
-
-        if ($status && in_array($status, ['pendente', 'concluida'])) {
-            $query->where('status', $status);
-        }
-
-        $tarefas = $query->orderBy('data_vencimento')->paginate(10);
-
-        return view('tarefas.index', compact('tarefas', 'busca', 'status'));
+    if ($busca) {
+        $query->where('titulo', 'like', '%' . $busca . '%');
     }
+
+    if (in_array($ordenarPor, ['pendente', 'concluida'])) {
+        $query->where('status', $ordenarPor);
+        $query->orderBy('data_vencimento');
+    }
+    elseif ($ordenarPor === 'status') {
+        $query->orderBy('status');
+    }
+    else {
+        $query->orderBy('data_vencimento');
+    }
+
+    $tarefas = $query->paginate(10);
+
+    return view('tarefas.index', compact('tarefas', 'busca', 'ordenarPor'));
+}
+
 
     public function create()
     {
@@ -79,11 +86,12 @@ class TarefaController extends Controller
         return redirect()->route('tarefas.index')->with('success', 'Tarefa excluída com sucesso!');
     }
 
-    public function concluir(Tarefa $tarefa)
+    public function toggleStatus(Tarefa $tarefa)
     {
-        $tarefa->update(['status' => 'concluida']);
+        $novoStatus = $tarefa->status === 'concluida' ? 'pendente' : 'concluida';
+        $tarefa->update(['status' => $novoStatus]);
 
-        return redirect()->route('tarefas.index')->with('success', 'Tarefa concluída com sucesso!');
+        return redirect()->route('tarefas.index')->with('success', 'Status atualizado com sucesso!');
     }
 
 
